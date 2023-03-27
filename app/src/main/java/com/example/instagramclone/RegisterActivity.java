@@ -42,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                dbConnect.RegisterUser(email, pass, new CallBackClass() {
+                dbConnect.RegisterUser(username, email, pass, new CallBackClass() {
                     @Override
                     public void onFailure(String msg) {
                         Toast.makeText(RegisterActivity.this, msg   , Toast.LENGTH_SHORT).show();

@@ -12,6 +12,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class DatabaseConnector {
     private FirebaseAuth mAuth;
     private DatabaseReference database;
@@ -39,7 +42,7 @@ public class DatabaseConnector {
         });
     }
 
-    public void RegisterUser(String email, String password, CallBackClass callBack){
+    public void RegisterUser(String username, String email, String password, CallBackClass callBack){
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -47,10 +50,29 @@ public class DatabaseConnector {
                     callBack.onFailure(task.getException().getMessage().toString());
                 }
                 else{
-
-                    callBack.onSuccess();
+                    Map<String, Object> user= new HashMap<>();
+                    user.put("username",username);
+                    user.put("email",email);
+                    user.put("id",mAuth.getCurrentUser().getUid().toString());
+                    database.child("Users").child(mAuth.getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                callBack.onSuccess();
+                            }
+                        }
+                    });
                 }
             }
         });
+    }
+
+    public void LogoutUser(CallBackClass callBack){
+        mAuth.signOut();
+        callBack.onSuccess();
+    }
+
+    public void getAllUsers(){
+//        ListUsersPage page = mAuth.listusers(null);
     }
 }
