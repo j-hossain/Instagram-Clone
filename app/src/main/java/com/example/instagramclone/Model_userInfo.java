@@ -1,9 +1,9 @@
 package com.example.instagramclone;
 
-public class UserInfo {
+public class Model_userInfo {
     private String username;
 
-    public UserInfo(String username) {
+    public Model_userInfo(String username) {
         this.username = username;
     }
 
