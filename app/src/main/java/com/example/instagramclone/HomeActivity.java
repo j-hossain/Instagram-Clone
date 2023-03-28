@@ -40,9 +40,15 @@ public class HomeActivity extends AppCompatActivity {
         });
         ListView userList = homeBinding.userList;
         ArrayList<String> usernames = new ArrayList<String>();
-        dbConnect.getAllUsers();
-        usernames.add("Jahin");
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,usernames);
-        userList.setAdapter(arrayAdapter);
+        dbConnect.getAllUsers(new UserListCallback() {
+            @Override
+            public void setUserList(ArrayList<Model_userInfo> userData) {
+                for(Model_userInfo userInfo:userData){
+                    usernames.add(userInfo.getUsername());
+                    ArrayAdapter arrayAdapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1,usernames);
+                    userList.setAdapter(arrayAdapter);
+                }
+            }
+        });
     }
 }

@@ -6,3 +6,4 @@ public interface CallBackClass {
     public void onFailure(String msg);
     public void onSuccess();
 }
+
