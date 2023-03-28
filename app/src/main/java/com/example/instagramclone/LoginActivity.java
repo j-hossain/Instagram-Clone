@@ -25,6 +25,10 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin = findViewById(R.id.buttonLogin);
         textViewSwitchToRegister = findViewById(R.id.textViewSwitchToRegister);
         dbConnect = new DatabaseConnector();
+        if(dbConnect.checkLoggedinUser()!=null){
+            Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
+            startActivity(homeIntent);
+        }
 
         textViewSwitchToRegister.setOnClickListener(new View.OnClickListener() {
             @Override

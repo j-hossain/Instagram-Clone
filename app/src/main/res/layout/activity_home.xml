@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,18 +15,46 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/userList">
+
         </ListView>
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/buttonLogout"
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/buttonLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:textAllCaps="false" />
+        <!--        <Button-->
+        <!--            android:id="@+id/buttonHome"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Home"-->
+        <!--            android:textAllCaps="false" />-->
+
+    </LinearLayout>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/stat_sys_upload"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:text="Logout"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        tools:layout_editor_absoluteX="298dp"
+        tools:layout_editor_absoluteY="445dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
